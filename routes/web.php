@@ -20,7 +20,7 @@ Route::group(['middleware' => ['guest']], function(){
     });
 });
 
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => ['auth']], function(){
     Route::namespace('Authenticated')->group(function(){
         Route::namespace('Top')->group(function(){
             Route::get('/logout', 'TopsController@logout');
