@@ -24,6 +24,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    // ログインしているユーザーが/loginなどに遷移するとtopに戻る
     /**
      * Where to redirect users after login.
      *
@@ -40,6 +41,8 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
 
     public function loginView()
     {
