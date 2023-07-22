@@ -42,8 +42,8 @@
         @endif
       </div>
       <div>
-        @if($user->role == 0)
-        <span>選択科目 :</span><span>{{ $user->subjects->subject }}</span>
+        @if($user->role == 4)
+        <span>選択科目 :</span>
         @endif
       </div>
     </div>

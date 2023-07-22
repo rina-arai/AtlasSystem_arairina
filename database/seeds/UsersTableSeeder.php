@@ -23,7 +23,19 @@ class UsersTableSeeder extends Seeder
             'birth_day'=> '2000/09/09',
             'role'=> 4,
             'password'=> bcrypt('yamada1'),
-        ]
-        ]);
+        ]]);
+
+        DB::table('users')->insert([
+        [
+            'over_name'=> '山田',
+            'under_name'=> '花子',
+            'over_name_kana'=> 'ヤマダ',
+            'under_name_kana'=> 'ハナコ',
+            'mail_address'=> 'hanako@gmail.com',
+            'sex'=> 2,
+            'birth_day'=> '1996/09/09',
+            'role'=> 1,
+            'password'=> bcrypt('hanako1'),
+        ]]);
     }
 }
