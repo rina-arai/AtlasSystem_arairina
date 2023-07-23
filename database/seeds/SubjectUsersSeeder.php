@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Users\User;
+use App\Models\Users\Subjects;
 
 class SubjectUsersSeeder extends Seeder
 {

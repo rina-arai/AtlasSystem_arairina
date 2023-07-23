@@ -23,9 +23,7 @@ class UsersTableSeeder extends Seeder
             'birth_day'=> '2000/09/09',
             'role'=> 4,
             'password'=> bcrypt('yamada1'),
-        ]]);
-
-        DB::table('users')->insert([
+        ],
         [
             'over_name'=> '山田',
             'under_name'=> '花子',

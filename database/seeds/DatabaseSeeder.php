@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         // 各テーブルへのデータの流し込みを呼び出す
         $this->call('UsersTableSeeder::class');
         $this->call('SubjectsTableSeeder::class');
+        $this->call('SubjectUsersSeeder::class');
 
     }
 }

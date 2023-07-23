@@ -68,7 +68,7 @@ class User extends Authenticatable
 
     // Laravelが想定しているテーブルは単数形(subject_user)なので、第二引数にテーブル名を指定
     public function subjects(){
-        return $this->belongsToMany('App\Subjects', 'subject_users', 'user_id', 'subject_id');// リレーションの定義
+        return $this->belongsToMany('App\Models\Users\Subjects', 'subject_users', 'user_id', 'subject_id');// リレーションの定義
     }
 
     // いいねしているかどうか

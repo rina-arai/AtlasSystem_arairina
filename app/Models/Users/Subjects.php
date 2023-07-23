@@ -17,6 +17,6 @@ class Subjects extends Model
 
     // ３番目の引数は、関係を定義しているモデルの外部キー名、４番目の引数は、関連付けるモデルの外部キー名
     public function users(){
-        return $this->belongsToMany('App\User', 'subject_users', 'subject_id', 'user_id');// リレーションの定義
+        return $this->belongsToMany('App\Models\Users\User', 'subject_users', 'subject_id', 'user_id');// リレーションの定義
     }
 }
