@@ -66,6 +66,7 @@ class RegisterController extends Controller
             $old_month = $request->old_month;
             $old_day = $request->old_day;
             $data = $old_year . '-' . $old_month . '-' . $old_day;
+            // strtotime() 関数は、与えられた文字列をUnixタイムスタンプに変換、さらにそれをdate関数でフォーマットの形にしている
             $birth_day = date('Y-m-d', strtotime($data));
             $subjects = $request->subject;
 

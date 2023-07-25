@@ -6,7 +6,6 @@
   <title>AtlasBulletinBoard</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
   <!-- css -->
-  <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -33,13 +32,13 @@
                 <input type="text" style="width:140px;" class="border-0 over_name" name="over_name">
               </div>
               <!-- エラー文の表示 -->
-              <div class="validate_text">
+              <span class="error_message">
                 @if ($errors->has('over_name'))
                     @foreach ($errors->get('over_name') as $message)
                         {{ $message }}<br>
                     @endforeach
                 @endif
-              </div>
+              </span>
             </div>
             <!-- 名 -->
             <div class="" style="width:140px">
@@ -48,13 +47,13 @@
                 <input type="text" style="width:140px;" class="border-0 under_name" name="under_name">
               </div>
               <!-- エラー文の表示 -->
-              <div class="validate_text">
+              <span class="error_message">
                 @if ($errors->has('under_name'))
                     @foreach ($errors->get('under_name') as $message)
                         {{ $message }}<br>
                     @endforeach
                 @endif
-              </div>
+              </span>
             </div>
           </div>
 
@@ -66,6 +65,14 @@
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 over_name_kana" name="over_name_kana">
               </div>
+              <!-- エラー文の表示 -->
+              <span class="error_message">
+                @if ($errors->has('over_name_kana'))
+                    @foreach ($errors->get('over_name_kana') as $message)
+                        {{ $message }}<br>
+                    @endforeach
+                @endif
+              </span>
             </div>
             <!-- メイ -->
             <div class="" style="width:140px">
@@ -73,6 +80,14 @@
               <div class="border-bottom border-primary" style="width:140px;">
                 <input type="text" style="width:140px;" class="border-0 under_name_kana" name="under_name_kana">
               </div>
+              <!-- エラー文の表示 -->
+              <span class="error_message">
+                @if ($errors->has('under_name_kana'))
+                    @foreach ($errors->get('under_name_kana') as $message)
+                        {{ $message }}<br>
+                    @endforeach
+                @endif
+              </span>
             </div>
           </div>
 
@@ -82,6 +97,14 @@
             <div class="border-bottom border-primary">
               <input type="mail" class="w-100 border-0 mail_address" name="mail_address">
             </div>
+            <!-- エラー文の表示 -->
+            <span class="error_message">
+              @if ($errors->has('mail_address'))
+                  @foreach ($errors->get('mail_address') as $message)
+                      {{ $message }}<br>
+                  @endforeach
+              @endif
+            </span>
           </div>
         </div>
 
@@ -93,12 +116,19 @@
           <label style="font-size:13px">女性</label>
           <input type="radio" name="sex" class="sex" value="3">
           <label style="font-size:13px">その他</label>
+          <!-- エラー文の表示 -->
+          <span class="error_message">
+            @if ($errors->has('sex'))
+                 @foreach ($errors->get('sex') as $message)
+                    {{ $message }}<br>
+                @endforeach
+            @endif
+          </span>
         </div>
 
         <!-- 生年月日 -->
         <div class="mt-3">
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
-          <!-- year -->
           <select class="old_year" name="old_year">
             <option value="none">-----</option>
             <option value="1985">1985</option>
@@ -129,7 +159,6 @@
             <option value="2010">2010</option>
           </select>
           <label style="font-size:13px">年</label>
-          <!-- month -->
           <select class="old_month" name="old_month">
             <option value="none">-----</option>
             <option value="01">1</option>
@@ -146,7 +175,6 @@
             <option value="12">12</option>
           </select>
           <label style="font-size:13px">月</label>
-          <!-- day -->
           <select class="old_day" name="old_day">
             <option value="none">-----</option>
             <option value="01">1</option>
@@ -181,7 +209,15 @@
             <option value="30">30</option>
             <option value="31">31</option>
           </select>
-          <label style="font-size:13px">月</label>
+          <label style="font-size:13px">日</label>
+          <!-- エラー文の表示 -->
+          <span class="error_message">
+            @if ($errors->has('birth_day'))
+                 @foreach ($errors->get('birth_day') as $message)
+                    {{ $message }}<br>
+                @endforeach
+            @endif
+          </span>
         </div>
 
         <!-- 役職 -->
@@ -195,6 +231,14 @@
           <label style="font-size:13px">教師(英語)</label>
           <input type="radio" name="role" class="other_role role" value="4">
           <label style="font-size:13px" class="other_role">生徒</label>
+          <!-- エラー文の表示 -->
+          <span class="error_message">
+            @if ($errors->has('role'))
+                 @foreach ($errors->get('role') as $message)
+                    {{ $message }}<br>
+                @endforeach
+            @endif
+          </span>
         </div>
 
         <!-- 選択科目 -->
@@ -214,22 +258,38 @@
           <div class="border-bottom border-primary">
             <input type="password" class="border-0 w-100 password" name="password">
           </div>
+          <!-- エラー文の表示 -->
+          <span class="error_message">
+            @if ($errors->has('password'))
+                 @foreach ($errors->get('password') as $message)
+                    {{ $message }}<br>
+                @endforeach
+            @endif
+          </span>
         </div>
 
         <!-- 確認用パスワード -->
         <div class="mt-3">
           <label class="d-block m-0" style="font-size:13px">確認用パスワード</label>
           <div class="border-bottom border-primary">
-            <input type="password" class="border-0 w-100 password_confirmation" name="password">
+            <input type="password" class="border-0 w-100 password_confirmation" name="password_confirmation">
           </div>
+          <!-- エラー文の表示 -->
+          <span class="error_message">
+            @if ($errors->has('password_confirmation'))
+                 @foreach ($errors->get('password_confirmation') as $message)
+                    {{ $message }}<br>
+                @endforeach
+            @endif
+          </span>
         </div>
 
-        <!-- 登録ボタン -->
+        <!-- 新規登録ボタン -->
         <div class="mt-5 text-right">
           <input type="submit" class="btn btn-primary register_btn" value="新規登録" onclick="return confirm('登録してよろしいですか？')">
         </div>
 
-        <!-- ログイン画面へ -->
+        <!-- ログインページへ -->
         <div class="text-center">
           <a href="{{ route('loginView') }}">ログイン</a>
         </div>
