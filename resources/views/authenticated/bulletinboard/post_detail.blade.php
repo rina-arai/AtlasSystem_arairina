@@ -6,11 +6,33 @@
       <div class="p-3">
         <div class="detail_inner_head">
           <div>
+            <!-- サブカテゴリー入れる -->
+            @foreach($post->subCategories as $sub_category)
+            <span>{{ $sub_category->sub_category }}</span>
+            @endforeach
+            <!-- タイトルエラー文の表示 -->
+            <span class="error_message">
+              @if ($errors->has('post_title'))
+                  @foreach ($errors->get('post_title') as $message)
+                      {{ $message }}<br>
+                  @endforeach
+              @endif
+            </span>
+            <!-- 内容エラー文の表示 -->
+            <span class="error_message">
+              @if ($errors->has('post_body'))
+                  @foreach ($errors->get('post_body') as $message)
+                      {{ $message }}<br>
+                  @endforeach
+              @endif
+            </span>
           </div>
+          @if(Auth::user()->id == $post->user_id)
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
           </div>
+          @endif
         </div>
 
         <div class="contributor d-flex">

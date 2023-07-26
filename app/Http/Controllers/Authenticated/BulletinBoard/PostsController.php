@@ -12,6 +12,7 @@ use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use Auth;
+use DB;
 
 class PostsController extends Controller
 {
@@ -49,15 +50,37 @@ class PostsController extends Controller
     }
 
     public function postCreate(PostFormRequest $request){
-        $post = Post::create([
-            'user_id' => Auth::id(),
-            'post_title' => $request->post_title,
-            'post' => $request->post_body
-        ]);
-        return redirect()->route('post.show');
+
+            $sub_category = $request->post_category_id;
+            $post_get = Post::create([
+                'user_id' => Auth::id(),
+                'post_title' => $request->post_title,
+                'post' => $request->post_body
+            ]);
+            $post = Post::findOrFail($post_get->id);
+            $post->subCategories()->attach($sub_category);
+
+            return redirect()->route('post.show');
+
     }
 
     public function postEdit(Request $request){
+
+        // バリデーションルール定義
+        $rules =[
+            'post_title' => 'required|string|max:100',
+            'post_body' => 'required|string|max:5000',
+        ];
+        // エラー時メッセージ
+        $messages =[
+            'post_title.required' => '※タイトルは必須項目です。',
+            'post_title.max' => '※タイトルは100文字以内で記入してください。',
+            'post_body.required' => '※投稿内容は必須項目です。',
+            'post_body.max' => '※投稿内容は5000文字以内で記入してください。',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
         Post::where('id', $request->post_id)->update([
             'post_title' => $request->post_title,
             'post' => $request->post_body,

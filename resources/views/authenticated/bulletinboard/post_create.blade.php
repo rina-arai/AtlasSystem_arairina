@@ -1,6 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
+<!-- 新規投稿フォーム -->
 <div class="post_create_container d-flex">
   <div class="post_create_area border w-50 m-5 p-5">
     <div class="">
@@ -10,8 +11,8 @@
         <optgroup label="{{ $main_category->main_category }}"></optgroup>
         <!-- サブカテゴリー表示 -->
         <optgroup>
-          @foreach($main_categories as $main_category)
-          <option >{{ $main_category->sub_category }}</option>
+          @foreach($main_category->subCategories as $sub_category)
+          <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category }}</option>
           @endforeach
         </optgroup>
         @endforeach
@@ -36,6 +37,8 @@
     </div>
     <form action="{{ route('post.create') }}" method="post" id="postCreate">{{ csrf_field() }}</form>
   </div>
+
+  <!-- 右側、カテゴリー追加 -->
   @can('admin')
   <div class="w-25 ml-auto mr-auto">
     <div class="category_area mt-5 p-5">
