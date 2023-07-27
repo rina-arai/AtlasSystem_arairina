@@ -19,6 +19,7 @@ class PostsController extends Controller
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
+        // インスタンスの作成 → new
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
@@ -28,14 +29,16 @@ class PostsController extends Controller
         }else if($request->category_word){
             $sub_category = $request->category_word;
             $posts = Post::with('user', 'postComments')->get();
-        }else if($request->like_posts){
+        }else if($request->like_posts){ // いいねした投稿を押したとき
+            // 認証ユーザーがいいねした投稿を取得
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
             ->whereIn('id', $likes)->get();
-        }else if($request->my_posts){
+        }else if($request->my_posts){ // 自分の投稿を押したとき
             $posts = Post::with('user', 'postComments')
             ->where('user_id', Auth::id())->get();
         }
+
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
     }
 
