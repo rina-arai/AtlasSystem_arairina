@@ -113,7 +113,7 @@ class PostsController extends Controller
         // エラー時メッセージ
         $messages =[
             'comment.required' => '※必須項目です。',
-            'comment.max' => '※タイトルは2500文字以内で記入してください。',
+            'comment.max' => '※コメントは2500文字以内で記入してください。',
         ];
 
         $this->validate($request, $rules, $messages);
