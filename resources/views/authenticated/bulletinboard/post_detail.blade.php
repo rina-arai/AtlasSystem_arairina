@@ -66,6 +66,14 @@
     <div class="comment_container border m-5">
       <div class="comment_area p-3">
         <p class="m-0">コメントする</p>
+        <!-- 内容エラー文の表示 -->
+            <span class="error_message">
+              @if ($errors->has('comment'))
+                  @foreach ($errors->get('comment') as $message)
+                      {{ $message }}<br>
+                  @endforeach
+              @endif
+            </span>
         <textarea class="w-100" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">
         <input type="submit" class="btn btn-primary" form="commentRequest" value="投稿">

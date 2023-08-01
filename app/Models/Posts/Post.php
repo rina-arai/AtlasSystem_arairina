@@ -16,10 +16,12 @@ class Post extends Model
     ];
 
     public function user(){
+        // リレーションの定義
         return $this->belongsTo('App\Models\Users\User');
     }
 
     public function postComments(){
+        // リレーションの定義
         return $this->hasMany('App\Models\Posts\PostComment');
     }
 
@@ -30,6 +32,7 @@ class Post extends Model
 
     // コメント数
     public function commentCounts($post_id){
-        return Post::with('postComments')->find($post_id)->postComments();
+        // withを用いて、関連するpostCommentsもPostモデルと一緒に取得する.getメソッドを使うと対象になった複数のデータを取得
+        return Post::with('postComments')->find($post_id)->postComments()->get()->count();
     }
 }

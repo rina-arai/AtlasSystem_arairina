@@ -52,6 +52,7 @@ class PostsController extends Controller
         return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }
 
+    // 新規投稿
     public function postCreate(PostFormRequest $request){
 
             $sub_category = $request->post_category_id;
@@ -67,6 +68,7 @@ class PostsController extends Controller
 
     }
 
+    // 投稿編集
     public function postEdit(Request $request){
 
         // バリデーションルール定義
@@ -91,6 +93,7 @@ class PostsController extends Controller
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
 
+    // 投稿削除
     public function postDelete($id){
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
@@ -100,7 +103,21 @@ class PostsController extends Controller
         return redirect()->route('post.input');
     }
 
+    // コメント投稿
     public function commentCreate(Request $request){
+
+        // バリデーションルール定義
+        $rules =[
+            'comment' => 'required|string|max:2500',
+        ];
+        // エラー時メッセージ
+        $messages =[
+            'comment.required' => '※必須項目です。',
+            'comment.max' => '※タイトルは2500文字以内で記入してください。',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),
