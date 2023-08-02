@@ -41,7 +41,12 @@
       <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
       <ul>
         @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
+          <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
+          <ul>
+            @foreach($category->subCategories as $sub_category)
+            <input type="submit" name="sub_category" class="category_btn" value="{{ $sub_category->sub_category }}" form="postSearchRequest"><br>
+            @endforeach
+          </ul>
         @endforeach
       </ul>
     </div>
