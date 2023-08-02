@@ -72,8 +72,8 @@
         </select>
       </div>
       <div class="">
-        <p class="m-0 search_conditions"><span>検索条件の追加</span></p>
-        <div class="search_conditions_inner">
+        <label class="m-0 search_conditions" ><span>検索条件の追加</span></label>
+        <div class="search_conditions_inner" >
           <div>
             <label>性別</label>
             <span>男</span><input type="radio" name="sex" value="1" form="userSearchRequest">
@@ -91,6 +91,9 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
+            <span>国語</span><input type="checkbox" name="subject" value="1" form="userSearchRequest">
+            <span>数学</span><input type="checkbox" name="subject" value="2" form="userSearchRequest">
+            <span>英語</span><input type="checkbox" name="subject" value="3" form="userSearchRequest">
           </div>
         </div>
       </div>

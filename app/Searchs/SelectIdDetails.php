@@ -28,8 +28,9 @@ class SelectIdDetails implements DisplayUsers{
       $q->whereIn('sex', $gender)
       ->whereIn('role', $role);
     })
+    // リレーション先のテーブルの条件で検索したいときwhereHas使う　第一引数はリレーションメソッド名
     ->whereHas('subjects', function($q) use ($subjects){
-      $q->where('subjects.id', $subjects);
+      $q->whereIn('subjects.id', $subjects);
     })
     ->orderBy('id', $updown)->get();
     return $users;
