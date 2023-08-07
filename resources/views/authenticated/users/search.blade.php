@@ -52,8 +52,11 @@
     </div>
     @endforeach
   </div>
+
+  <!-- 右エリア：検索条件等 -->
   <div class="search_area w-25 border">
     <div class="">
+      <!-- キーワードフォーム -->
       <div>
         <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
       </div>
@@ -91,9 +94,10 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
-            <span>国語</span><input type="checkbox" name="subject" value="1" form="userSearchRequest">
-            <span>数学</span><input type="checkbox" name="subject" value="2" form="userSearchRequest">
-            <span>英語</span><input type="checkbox" name="subject" value="3" form="userSearchRequest">
+            <!-- name="xxxxx[]"で配列の形でデータを送信 -->
+            <span>国語</span><input type="checkbox" name="subject[]" value="1" form="userSearchRequest">
+            <span>数学</span><input type="checkbox" name="subject[]" value="2" form="userSearchRequest">
+            <span>英語</span><input type="checkbox" name="subject[]" value="3" form="userSearchRequest">
           </div>
         </div>
       </div>
@@ -104,6 +108,7 @@
         <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
       </div>
     </div>
+    <!-- form="userSearchRequest"はid="userSearchRequest"と関連づけたいものにつける -->
     <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
   </div>
 </div>
