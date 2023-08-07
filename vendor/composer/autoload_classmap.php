@@ -4512,4 +4512,6 @@ return array(
     'phpDocumentor\\Reflection\\Types\\This' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/This.php',
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
     'phpDocumentor\\Reflection\\Utils' => $vendorDir . '/phpdocumentor/reflection-docblock/src/Utils.php',
+    're_set_usersTableSeeder' => $baseDir . '/database/seeds/re_set_usersTableSeeder.php',
+    're_settingsTableSeeder' => $baseDir . '/database/seeds/re_settingsTableSeeder.php',
 );

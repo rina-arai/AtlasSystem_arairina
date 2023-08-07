@@ -41,9 +41,10 @@ class CalendarView{
         $toDay = $this->carbon->copy()->format("Y-m-d");
 
         // <td
+        // 背景色など
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){ //今日より後ろの場合
           $html[] = '<td class="day-blank">';
-        }else{
+        }else{ //今日より未来の場合
           $html[] = '<td class="calendar-td '.$day->getClassName().'">';
         }
         // 日付の記述
@@ -53,6 +54,7 @@ class CalendarView{
         if(in_array($day->everyDay(), $day->authReserveDay())){ //既に予約をされている日
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
 
+          // 表示内容の条件
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){ //今日より過去の場合
             if($reservePart == 1){ //1に参加
             $reservePart = "1部参加";
@@ -69,24 +71,24 @@ class CalendarView{
             }else if($reservePart == 3){ //3を予約
             $reservePart = "リモ3部";
             }
+          }
+
+          // 表示方法の条件
+          if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){//今日より過去の場合:参加した部の表示
+            $html[] =  $reservePart ;
+          }else{ //今日より未来の場合:参加予定の部の表示、キャンセルボタン
             $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';//キャンセルボタン
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
 
-
-          // if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){ //今日より後ろの場合
-          //   $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
-          //   $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-          // }else{
-          //   $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';//キャンセルボタン
-          //   $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
-          // }
-
         }else{ // 予約していない日
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){ //今日より後ろの場合
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
-          }else{
+          }else{ //今日より未来の場合 予約
+            // プルダウン選択の表示
             $html[] = $day->selectPart($day->everyDay());
+            $html[] = '<input type="hidden" name="getPart[]" value="'.$day->selectPart($toDay)->get('getPart[]').'" form="reserveParts">';
+            $html[] = '<input type="hidden" name="getData[]" value="'.$toDay.'" form="reserveParts">';
           }
 
         }

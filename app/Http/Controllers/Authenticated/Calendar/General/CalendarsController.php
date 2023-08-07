@@ -23,9 +23,11 @@ class CalendarsController extends Controller
         try{
             $getPart = $request->getPart;
             $getDate = $request->getData;
+            // $getDateと$getPartを組み合わせて、日付をキー、部分を値とする連想配列を作成
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             foreach($reserveDays as $key => $value){
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
+                // 予約可能な空き枠を減らす
                 $reserve_settings->decrement('limit_users');
                 $reserve_settings->users()->attach(Auth::id());
             }
