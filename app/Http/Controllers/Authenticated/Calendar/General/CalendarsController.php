@@ -23,6 +23,7 @@ class CalendarsController extends Controller
         try{
             $getPart = $request->getPart;
             $getDate = $request->getData;
+
             // $getDateと$getPartを組み合わせて、日付をキー、部分を値とする連想配列を作成
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             foreach($reserveDays as $key => $value){
@@ -36,5 +37,19 @@ class CalendarsController extends Controller
             DB::rollback();
         }
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+    }
+
+    public function delete(Request $request){
+        // 予約された日付を変数に格納
+
+        $delete_date = ReserveSettings::where('setting_reserve',$request->delete_date)->where('setting_part', $request->getPart)->where('id', $request->delete_date->users()->id);
+dd($delete_date);
+        // 予約可能な空き枠を増やす
+        $delete_date->increment('limit_users');
+
+
+        User::findOrFail($id)->reserveSettings($delete_date->id)->delete();
+        return redirect("deleteParts");
+
     }
 }
