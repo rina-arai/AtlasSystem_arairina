@@ -40,16 +40,16 @@ class CalendarsController extends Controller
     }
 
     public function delete(Request $request){
-        // 予約された日付を変数に格納
 
-        $delete_date = ReserveSettings::where('setting_reserve',$request->delete_date)->where('setting_part', $request->getPart)->where('id', $request->delete_date->users()->id);
-dd($delete_date);
+        $getPart = $request->getPart;
+        // dd($getPart);
+        $delete_date = $request->delete_date;
+        $delete = ReserveSettings::where('setting_reserve', $delete_date)->where('setting_part', $getPart)->first();
         // 予約可能な空き枠を増やす
-        $delete_date->increment('limit_users');
+        $delete->increment('limit_users');
+        $delete->users()->detach(Auth::id());
 
-
-        User::findOrFail($id)->reserveSettings($delete_date->id)->delete();
-        return redirect("deleteParts");
+        return back();
 
     }
 }

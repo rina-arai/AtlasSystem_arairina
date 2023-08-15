@@ -21,6 +21,19 @@ class re_settingsTableSeeder extends Seeder
         ],[
             'setting_reserve'=> '2023-08-21',
             'setting_part'=> '2',
+        ],[
+            'setting_reserve'=> '2023-08-30',
+            'setting_part'=> '1',
+        ],[
+            'setting_reserve'=> '2023-08-31',
+            'setting_part'=> '2',
+        ]
+        ,[
+            'setting_reserve'=> '2023-08-24',
+            'setting_part'=> '1',
+        ],[
+            'setting_reserve'=> '2023-08-24',
+            'setting_part'=> '2',
         ]
         ]);
     }
