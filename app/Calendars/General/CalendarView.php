@@ -77,24 +77,18 @@ class CalendarView{
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){//今日より過去の場合:参加した部の表示
             $html[] =  $reservePart ;
           }else{ //今日より未来の場合:参加予定の部の表示、キャンセルボタン
-            $reserve_day = $day->authReserveDate($day->everyDay())->first()->setting_reserve;
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75 js-modal-open" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" form="deleteParts">'. $reservePart .'</button>';//キャンセルボタン
-
+            $html[] = '<form id="deleteForm" action="/delete/calendar" method="post">';
+            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75 js-modal-open" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'" form="deleteForm">'. $reservePart .'</button>';//キャンセルボタン
+            $html[] = '</form>';
             // モーダルの中身
             $html[] = '<div class="modal js-modal">';
               $html[] = '<div class="modal__bg js-modal-close"></div>';
               $html[] = '<div class="modal__content">';
-
-                $me_day = $day->authReserveDate($day->everyDay())->setting_reserve;
-                $reserveDays = array_filter(array_combine($me_day, $reservePart));
-                foreach($reserveDays as $key => $value){
-                  $html[] = '<p class="">予約日：'.$reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first()->setting_reserve.'</p>';
-                }
-                // $html[] = '<p class="">予約日：'. $day->authReserveDate()->first()->setting_reserve .'</p>';
+                $html[] = '<p class="">予約日:</p><p id="output" class=""></p>';
                 $html[] = '<p class="">時間：'. $reservePart .'</p>';
                 $html[] = '<p class="">上記の予約をキャンセルしてもよろしいですか？</p>';
                 $html[] = '<button type="submit" class="btn btn-primary js-modal-close">閉じる</button>';
-                $html[] = '<button type="submit" class="btn btn-danger id="cancelButton"><a href ="'. route('deleteParts') .'">キャンセル</a></button>';
+                $html[] = '<button type="submit" class="btn btn-danger id="cancelButton" action="/delete/calendar"><a href ="'. route('deleteParts') .'">キャンセル</a></button>';
               $html[] = '</div>';
             $html[] = '</div>';
 

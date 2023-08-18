@@ -39,13 +39,13 @@ class CalendarView{
       foreach($days as $day){
         $startDay = $this->carbon->format("Y-m-01");
         $toDay = $this->carbon->format("Y-m-d");
-        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
+        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){ //今日より過去
           $html[] = '<td class="past-day border">';
-        }else{
+        }else{ //今日より未来
           $html[] = '<td class="border '.$day->getClassName().'">';
         }
         $html[] = $day->render();
-        $html[] = $day->dayPartCounts($day->everyDay());
+        $html[] = $day->dayPartCounts($day->everyDay()); //部,人数
         $html[] = '</td>';
       }
       $html[] = '</tr>';

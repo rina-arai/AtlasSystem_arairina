@@ -21,3 +21,13 @@ $(function () {
     });
 
 });
+
+// キャンセルモーダル日付表示
+let deleteForm = document.getElementById('deleteForm');
+let output = document.getElementById('output');
+
+deleteForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // フォームの実際の送信を防止
+    let deleteDate = event.target.elements.delete_date.value;
+    output.innerHTML = deleteDate;
+});
