@@ -32,21 +32,24 @@ class CalendarWeekDay{
     $html[] = '<div class="text-left">';
     if($one_part){
       $html[] = '<p class="day_part m-0 pt-1"><a href="'. route('calendar.admin.detail',['date' => $ymd,'part' => '1']) .'">1部</a></p>';
+      // 予約人数のカウント
       $onePartFrame = $this->onePartFrame($this->everyDay());
-      $sum = 20 - $onePartFrame;
-      $html[] = '<p class="day_part m-0 pt-1">'.$sum.'</p>';
+      $count = ReserveSettings::where('setting_reserve', $ymd)->where('setting_part', '1')->first()
+      // reserve_setting_idカラムの値がtrueのレコードだけ抽出
+      ->users()->withPivot('reserve_setting_id', true)->count();
+      $html[] = '<p class="day_part m-0 pt-1">'.$count.'</p>';
     }
     if($two_part){
       $html[] = '<p class="day_part m-0 pt-1"><a href="'. route('calendar.admin.detail',['date' => $ymd,'part' => '2']) .'">2部</a></p>';
       $twoPartFrame = $this->twoPartFrame($this->everyDay());
-      $sum = 20 - $twoPartFrame;
-      $html[] = '<p class="day_part m-0 pt-1">'.$sum.'</p>';
+      $count = ReserveSettings::where('setting_reserve', $ymd)->where('setting_part', '2')->first()->users()->withPivot('reserve_setting_id', true)->count();
+      $html[] = '<p class="day_part m-0 pt-1">'.$count.'</p>';
     }
     if($three_part){
       $html[] = '<p class="day_part m-0 pt-1"><a href="'. route('calendar.admin.detail',['date' => $ymd,'part' => '3']) .'">3部</a></p>';
       $threePartFrame = $this->threePartFrame($this->everyDay());
-      $sum = 20 - $threePartFrame;
-      $html[] = '<p class="day_part m-0 pt-1">'.$sum.'</p>';
+      $count = ReserveSettings::where('setting_reserve', $ymd)->where('setting_part', '3')->first()->users()->withPivot('reserve_setting_id', true)->count();
+      $html[] = '<p class="day_part m-0 pt-1">'.$count.'</p>';
     }
     $html[] = '</div>';
 

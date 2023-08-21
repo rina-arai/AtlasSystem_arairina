@@ -30,6 +30,7 @@ class CalendarsController extends Controller
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
                 // 予約可能な空き枠を減らす
                 $reserve_settings->decrement('limit_users');
+                // attachはたたいたしか使えない　usersはリレーション、
                 $reserve_settings->users()->attach(Auth::id());
             }
             DB::commit();
@@ -42,8 +43,8 @@ class CalendarsController extends Controller
     public function delete(Request $request){
 
         $getPart = $request->getPart;
-        // dd($getPart);
         $delete_date = $request->delete_date;
+        // dd($delete_date);
         $delete = ReserveSettings::where('setting_reserve', $delete_date)->where('setting_part', $getPart)->first();
         // 予約可能な空き枠を増やす
         $delete->increment('limit_users');

@@ -29,6 +29,7 @@
           </div>
           @if(Auth::user()->id == $post->user_id)
           <div>
+
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
             <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
           </div>
@@ -82,9 +83,11 @@
     </div>
   </div>
 </div>
+<!-- モーダル中身 -->
 <div class="modal js-modal">
   <div class="modal__bg js-modal-close"></div>
   <div class="modal__content">
+    <!-- form -->
     <form action="{{ route('post.edit') }}" method="post">
       <div class="w-100">
         <div class="modal-inner-title w-50 m-auto">

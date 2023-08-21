@@ -22,12 +22,27 @@ $(function () {
 
 });
 
-// キャンセルモーダル日付表示
-let deleteForm = document.getElementById('deleteForm');
-let output = document.getElementById('output');
+// キャンセルモーダル表示
+$('.js-modal-open').on('click', function () {
+    // モーダルの中身がフェードイン
+    $('.js-modal').fadeIn();
+    // .js-modal-openのカスタム属性を変数に格納
+    // attr()はカスタム属性を取得する
+    var reserveDate = $(this).attr('reserveDate');
+    var reservePart = $(this).attr('reservePart');
 
-deleteForm.addEventListener('submit', (event) => {
-    event.preventDefault(); // フォームの実際の送信を防止
-    let deleteDate = event.target.elements.delete_date.value;
-    output.innerHTML = deleteDate;
+    // （ブレイドでの場所を指定）　value属性に水色の変数を入れる
+    $('.reserveDate').text("予約日： " + reserveDate);
+    $('.reservePart').text("時間： " + reservePart);
+
+    // キャンセルボタン送信時に送る値
+    $('.getPart input').val(reservePart);
+    $('.delete_date input').val(reserveDate);
+
+    return false;
+});
+
+$('.js-modal-close').on('click', function () {
+    $('.js-modal').fadeOut();
+    return false;
 });
