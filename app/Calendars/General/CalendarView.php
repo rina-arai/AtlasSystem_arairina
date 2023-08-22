@@ -77,8 +77,9 @@ class CalendarView{
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){//今日より過去の場合:参加した部の表示
             $html[] =  $reservePart ;
           }else{ //今日より未来の場合:参加予定の部の表示、キャンセルボタン
+            $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
             $reserveDate = $day->authReserveDate($day->everyDay())->first()->setting_reserve;
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75 js-modal-open" reserveDate="'. $reserveDate .'" reservePart="'. $reservePart .'"  style="font-size:12px" value="" >'. $reservePart .'</button>';//キャンセルボタン
+            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75 js-modal-open" reserveDate="'. $reserveDate .'" reservePart="'. $reservePart .'"  style="font-size:12px" value="" >リモ'. $reservePart .'部</button>';//キャンセルボタン
 
             // モーダルの中身
             $html[] = '<div class="modal js-modal">';
@@ -92,8 +93,10 @@ class CalendarView{
 
                 // キャンセルボタン
                 $html[] = '<button type="submit" class="btn btn-danger id="cancelButton" form="deleteParts">キャンセル</button>';
+                $html[] = '<div class="delete">';
                 $html[] = '<input type="hidden" class="getPart" name="getPart" value="" form="deleteParts">';
                 $html[] = '<input type="hidden" class="delete_date" name="delete_date" value="" form="deleteParts">';
+                $html[] = '</div>';
                 $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
 
               $html[] = '</div>';

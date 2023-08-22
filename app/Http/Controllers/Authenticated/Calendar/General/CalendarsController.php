@@ -44,7 +44,7 @@ class CalendarsController extends Controller
 
         $getPart = $request->getPart;
         $delete_date = $request->delete_date;
-        // dd($delete_date);
+        // dd($getPart);
         $delete = ReserveSettings::where('setting_reserve', $delete_date)->where('setting_part', $getPart)->first();
         // 予約可能な空き枠を増やす
         $delete->increment('limit_users');

@@ -33,11 +33,11 @@ $('.js-modal-open').on('click', function () {
 
     // （ブレイドでの場所を指定）　value属性に水色の変数を入れる
     $('.reserveDate').text("予約日： " + reserveDate);
-    $('.reservePart').text("時間： " + reservePart);
+    $('.reservePart').text("時間： リモ" + reservePart + "部");
 
     // キャンセルボタン送信時に送る値
-    $('.getPart input').val(reservePart);
-    $('.delete_date input').val(reserveDate);
+    $('.delete input[name="getPart"]').val(reservePart);
+    $('.delete input[name="delete_date"]').val(reserveDate);
 
     return false;
 });
