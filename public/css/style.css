@@ -53,7 +53,7 @@ figure img{
 /* サイドバー */
 .sidebar{
   width:250px;
-  height:100vh;
+  min-height: 100vh;
   background-color:#03AAD2;
   font-weight:bold;
   padding-top: 20px;
@@ -261,6 +261,7 @@ figure img{
   color: #fff;
   border: none;
   font-size: 0.8rem;
+  cursor: pointer;
 }
 
 .post_good_like input:first-of-type{
@@ -366,6 +367,10 @@ figure img{
   cursor: pointer;
 }
 
+.sub_categories input{
+  cursor: pointer;
+}
+
 
 /* アコーディオン */
 /*閉じた状態の矢印描画*/
@@ -434,12 +439,11 @@ figure img{
 .reserve_users_area{
   display:flex;
   flex-wrap:wrap;
-  justify-content: space-between;
-  width:800px;
+  /* justify-content: space-between; */
+  width:74%;
   margin:10px auto;
-  height:80vh;
   overflow: scroll;
-  padding:10px;
+  padding:10px 20px 30px;
   border-radius:5px;
 }
 .reserve_users_area span{
@@ -453,8 +457,9 @@ figure img{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-right: 16px;
 }
-.search_conditions span{
+.search_conditions{
   cursor:pointer;
 }
 .search_conditions{
@@ -467,6 +472,10 @@ figure img{
 .search_conditions_inner input{
   margin-right: 5px;
 }
+.search_conditions_all input{
+  cursor: pointer;
+}
+
 .subject_edit_btn{
   color:#03AAD2;
   cursor:pointer;
@@ -484,14 +493,17 @@ figure img{
   display:none;
 }
 
-/* 右エリア */
-
 .search_area {
   padding: 60px 40px;
 }
 
 .search_area input{
   border: none;
+}
+
+.search_area .submit input,
+.reset input{
+  cursor: pointer;
 }
 
 .search_area div{
@@ -519,6 +531,7 @@ figure img{
   display: flex;
   flex-direction: column;
   width: 44%;
+  cursor: pointer;
 }
 
 .search_area label{
@@ -541,4 +554,18 @@ figure img{
 
 .text-right{
   margin: 30px auto 0;
+}
+
+.reserve_detail td, th{
+  padding: 6px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.reserve_detail .child:nth-child(odd) {
+  background-color: #E5FAFF;
+}
+
+.reserve_detail .head {
+  background-color: #03AAD2;
+  color: #fff;
 }

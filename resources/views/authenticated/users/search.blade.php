@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="search_content w-100 d-flex">
-  <div class="reserve_users_area">
+  <div class="reserve_users_area m-auto">
     @foreach($users as $user)
-    <div class="border one_person shadow">
+    <div class="border one_person mt-4 shadow">
       <div>
         <span class="text-black-50">ID : </span><span>{{ $user->id }}</span>
       </div>
       <div><span class="text-black-50">名前 : </span>
-        <a href="{{ route('user.profile', ['id' => $user->id]) }}">
+        <a href="{{ route('user.profile', ['id' => $user->id]) }}" style="color:#03AAD2">
           <span>{{ $user->over_name }}</span>
           <span>{{ $user->under_name }}</span>
         </a>
@@ -76,7 +76,7 @@
       </div>
 
       <!-- 検索条件の追加　アコーディオン -->
-      <div class="">
+      <div class="search_conditions_all">
         <label class="m-0 search_conditions border-bottom border-secondary" ><span>検索条件の追加</span></label>
         <div class="search_conditions_inner" >
           <div class="mt-3 search_select">
@@ -107,7 +107,7 @@
           </div>
         </div>
       </div>
-      <div class="mt-5">
+      <div class="mt-5 submit">
         <input type="submit" name="search_btn" value="検索" form="userSearchRequest" class="post_btn">
       </div>
       <div class="reset">

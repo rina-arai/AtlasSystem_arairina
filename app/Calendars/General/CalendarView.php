@@ -21,13 +21,13 @@ class CalendarView{
     $html[] = '<table class="table">';
     $html[] = '<thead>';
     $html[] = '<tr>';
-    $html[] = '<th>月</th>';
-    $html[] = '<th>火</th>';
-    $html[] = '<th>水</th>';
-    $html[] = '<th>木</th>';
-    $html[] = '<th>金</th>';
-    $html[] = '<th class="day-sat">土</th>';
-    $html[] = '<th class="day-sun">日</th>';
+    $html[] = '<th class="border">月</th>';
+    $html[] = '<th class="border">火</th>';
+    $html[] = '<th class="border">水</th>';
+    $html[] = '<th class="border">木</th>';
+    $html[] = '<th class="border">金</th>';
+    $html[] = '<th class="border day-sat">土</th>';
+    $html[] = '<th class="border day-sun">日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
     $html[] = '<tbody>';
@@ -43,9 +43,9 @@ class CalendarView{
         // <td
         // 背景色など
         if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){ //今日より後ろの場合
-          $html[] = '<td class="day-blank">';
+          $html[] = '<td class="border day-blank '.$day->getClassName().'">';
         }else{ //今日より未来の場合
-          $html[] = '<td class="calendar-td '.$day->getClassName().'">';
+          $html[] = '<td class="border calendar-td '.$day->getClassName().'">';
         }
         // 日付の記述
         $html[] = $day->render();
@@ -106,7 +106,7 @@ class CalendarView{
 
         }else{ // 予約していない日
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){ //今日より後ろの場合
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px; color:#494949">受付終了</p>';
             $html[] = '<p hidden>' .$day->selectPart($day->everyDay()). '</p>';
           }else{ //今日より未来の場合 予約
             // プルダウン選択の表示
