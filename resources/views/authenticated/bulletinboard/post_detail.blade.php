@@ -8,22 +8,22 @@
           <div>
             <!-- サブカテゴリー入れる -->
             @foreach($post->subCategories as $sub_category)
-            <span class="tag_sub">{{ $sub_category->sub_category }}</span>
+              <span class="tag_sub">{{ $sub_category->sub_category }}</span>
             @endforeach
             <!-- タイトルエラー文の表示 -->
             <span class="error_message">
               @if ($errors->has('post_title'))
-                  @foreach ($errors->get('post_title') as $message)
-                      {{ $message }}<br>
-                  @endforeach
+                @foreach ($errors->get('post_title') as $message)
+                  {{ $message }}<br>
+                @endforeach
               @endif
             </span>
             <!-- 内容エラー文の表示 -->
             <span class="error_message">
               @if ($errors->has('post_body'))
-                  @foreach ($errors->get('post_body') as $message)
-                      {{ $message }}<br>
-                  @endforeach
+                @foreach ($errors->get('post_body') as $message)
+                  {{ $message }}<br>
+                @endforeach
               @endif
             </span>
           </div>
@@ -68,13 +68,13 @@
     <div class="comment_container post_area m-5">
       <div class="comment_area p-3">
         <!-- 内容エラー文の表示 -->
-            <span class="error_message">
-              @if ($errors->has('comment'))
-                  @foreach ($errors->get('comment') as $message)
-                      {{ $message }}<br>
-                  @endforeach
-              @endif
-            </span>
+        <span class="error_message">
+          @if ($errors->has('comment'))
+            @foreach ($errors->get('comment') as $message)
+              {{ $message }}<br>
+            @endforeach
+          @endif
+        </span>
         <p class="m-0">コメントする</p>
         <textarea class="w-100 border" name="comment" form="commentRequest"></textarea>
         <input type="hidden" name="post_id" form="commentRequest" value="{{ $post->id }}">

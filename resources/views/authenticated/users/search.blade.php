@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="search_content w-100 d-flex">
-  <div class="reserve_users_area m-auto">
+  <div class="reserve_users_area">
     @foreach($users as $user)
     <div class="border one_person mt-4 shadow">
       <div>

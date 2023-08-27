@@ -85,20 +85,24 @@ class CalendarView{
             $html[] = '<div class="modal js-modal">';
               $html[] = '<div class="modal__bg js-modal-close"></div>';
               $html[] = '<div class="modal__content">';
-                // 予約日、部表示
-                $html[] = '<p class="reserveDate"></p>';
-                $html[] = '<p class="reservePart"></p>';
-                $html[] = '<p class="">上記の予約をキャンセルしてもよろしいですか？</p>';
-                $html[] = '<button  class="btn btn-primary js-modal-close">閉じる</button>';
+                $html[] = '<div class="m-auto" style="width:50%">';
+                  // 予約日、部表示
+                  $html[] = '<p class="reserveDate text-left"></p>';
+                  $html[] = '<p class="reservePart text-left"></p>';
+                  $html[] = '<p class="text-left">上記の予約をキャンセルしてもよろしいですか？</p>';
 
-                // キャンセルボタン
-                $html[] = '<button type="submit" class="btn btn-danger id="cancelButton" form="deleteParts">キャンセル</button>';
-                $html[] = '<div class="delete">';
-                $html[] = '<input type="hidden" class="getPart" name="getPart" value="" form="deleteParts">';
-                $html[] = '<input type="hidden" class="delete_date" name="delete_date" value="" form="deleteParts">';
+                  $html[] = '<div class="d-flex w-100" style="justify-content:space-between">';
+                    $html[] = '<button  class="btn btn-primary js-modal-close">閉じる</button>';
+                    // キャンセルボタン
+                    $html[] = '<button type="submit" class="btn btn-danger id="cancelButton" form="deleteParts">キャンセル</button>';
+                  $html[] = '</div>';
+                  $html[] = '<div class="delete">';
+                    $html[] = '<input type="hidden" class="getPart" name="getPart" value="" form="deleteParts">';
+                    $html[] = '<input type="hidden" class="delete_date" name="delete_date" value="" form="deleteParts">';
+                  $html[] = '</div>';
+                  $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
+
                 $html[] = '</div>';
-                $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
-
               $html[] = '</div>';
             $html[] = '</div>';
 

@@ -107,10 +107,6 @@ figure img{
 .past-day{
   background:#EEE;
 }
-.calendar-td{
-  min-width:100px;
-
-}
 
 .day_part{
   color:#494949;
@@ -439,7 +435,7 @@ figure img{
 .reserve_users_area{
   display:flex;
   flex-wrap:wrap;
-  /* justify-content: space-between; */
+  align-content: flex-start;
   width:74%;
   margin:10px auto;
   overflow: scroll;
