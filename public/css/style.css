@@ -13,18 +13,79 @@ li{
   list-style:none;
 }
 
+body{
+  color: #494949;
+}
+
+.shadow{
+  border-radius: 10px;
+  box-shadow: #00000036 0px 8px 10px;
+}
+
+.page_title{
+  font-size: 1.2rem;
+  margin: 20px 0 0 20px;
+}
+/* ログイン */
+
+figure img{
+  width: 50%;
+  height: auto;
+  display: block;
+  margin: 0 auto 40px;
+}
+
+.login_form .border{
+  background-color: #FFF;
+  padding: 25px 25px 40px;
+}
+
+.birth .d-flex div{
+  width: 30%;
+}
+
+.birth select{
+  border: none;
+  border-bottom: 1px solid #007bff;
+  width: 82%;
+}
+
 /* サイドバー */
 .sidebar{
-  width:150px;
+  width:250px;
   height:100vh;
   background-color:#03AAD2;
   font-weight:bold;
+  padding-top: 20px;
 }
 .main-container{
   width:100%;
 }
-.sidebar p a{
+
+.sidebar li a{
   color:#FFF;
+  display: flex;
+  opacity: 0.8;
+  align-items: center;
+  padding: 12px;
+  transition: .3s;
+}
+
+.sidebar span{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.sidebar li:hover {
+  background-color: #0489a9;
+  margin-left: 10px;
+  transition: margin-left .3s;
+
+}
+
+.sidebar li a:hover{
+  opacity: 1;
+  text-decoration: none;
 }
 
 /* トップページ */
@@ -105,13 +166,32 @@ li{
   height:300px;
   white-space: pre-wrap;
 }
+
+.tag_sub{
+  padding: 5px;
+  font-size: 0.8rem;
+  background-color: #03AAD2;
+  border-radius: 10px;
+  color: #FFF;
+}
+
 .detail_container{
   background:#FFF;
 }
 .post_area{
   background:#FFF;
   border-radius:10px;
+  margin-bottom: 30px;
 }
+
+.post_area a{
+  text-decoration: none;
+}
+
+.post_area .bold {
+  font-weight: bold;
+}
+
 .post_bottom_area{
   justify-content: space-between;
 }
@@ -128,11 +208,75 @@ li{
   color:red;
 }
 
+.other_area .border {
+  height: 280px;
+}
+
+.other_area div{
+  margin-bottom: 26px;
+}
+
+/* 投稿ボタン */
+.post_btn{
+  display: block;
+  color: #fff;
+  width: 100%;
+  background-color: #03AAD2;
+  border-radius: 10px;
+  text-align: center;
+  padding: 8px;
+  font-size: 0.8rem;
+}
+
+.post_btn:hover{
+  text-decoration: none;
+  color: #fff;
+}
+
+
+/* 投稿検索窓 */
+.post_search input:first-of-type{
+  border-radius: 10px 0 0 10px ;
+  padding:  8px;
+  border: none;
+  width: 70%;
+  font-size: 0.8rem;
+}
+
+.post_search input:last-of-type {
+  border-radius: 0 10px 10px 0;
+  padding: 8px;
+  background-color: #03AAD2;
+  border: none;
+  color: #fff;
+  width: 30%;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.post_good_like input{
+  width: 48%;
+  padding: 8px;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  font-size: 0.8rem;
+}
+
+.post_good_like input:first-of-type{
+  background-color: #e17397;
+}
+
+.post_good_like input:last-of-type {
+  background-color: #eeb12e;
+}
+
 /* 掲示板 詳細画面 */
 .contributor{
   font-size:12px;
   color:#999;
   font-weight:bold;
+  justify-content: space-between;
 }
 .detsail_post_title{
   font-size:14px;
@@ -144,6 +288,13 @@ li{
 .detail_inner_head{
   display:flex;
   justify-content: space-between;
+  align-items: center;
+}
+.detail_inner_btn span{
+  font-size: 0.8rem;
+}
+.detail_inner_btn a {
+  font-size: 0.8rem;
 }
 .edit-modal-open{
   cursor:pointer;
@@ -164,6 +315,10 @@ li{
   font-size:12px;
   font-weight:bold;
 }
+.comment_area .mb-1{
+  font-size: 0.6px;
+  color: #999;
+}
 .comment_area textarea{
   height:300px;
   resize:none;
@@ -173,6 +328,11 @@ li{
 }
 .post_status span{
   font-size:12px;
+}
+
+.comment_area input{
+  display: block;
+  margin: 10px 0 0 auto ;
 }
 
 /* 掲示板　カテゴリー */
@@ -198,19 +358,88 @@ li{
 .main_categories span,
 .sub_categories li input{
   list-style:none;
-  cursor:pointer;
+}
+.main_categories{
+  margin-bottom: 16px;
+  position: relative;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+
+/* アコーディオン */
+/*閉じた状態の矢印描画*/
+.main_categories:after,
+.search_conditions:after,
+.subject_edit_btn:after{
+  border-right: solid 2px #494949;
+  border-top: solid 2px #494949;
+  content: "";
+  display: block;
+  height: 8px;
+  position: absolute;
+  right: 10px;
+  top: 26%;
+  transform: rotate(135deg);
+  transition: transform .3s ease-in-out, top .3s ease-in-out;
+  width: 8px;
+}
+/* 開いた状態 */
+.main_categories.open::after,
+.search_conditions.open::after,
+.subject_edit_btn.open::after {
+  top: 45%;
+  transform: rotate(-45deg);
+}
+
+.sub_categories{
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+/* inputリセット */
+.sub_categories li input{
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #494949;
+}
+
+.sub_categories li{
+  margin-bottom: 16px;
+}
+
+
+/* 投稿画面　カテゴリー追加 */
+.category_add{
+  margin-top: 16px;
+}
+
+.main_category{
+  margin-bottom: 32px;
+}
+
+.border_color{
+  border-radius: 4px;
+  border: solid 1px #aaa;
 }
 
 /* ユーザー検索 */
 .reserve_users_area{
   display:flex;
   flex-wrap:wrap;
+  justify-content: space-between;
   width:800px;
   margin:10px auto;
   height:80vh;
   overflow: scroll;
   padding:10px;
-  background:#FFF;
   border-radius:5px;
 }
 .reserve_users_area span{
@@ -219,19 +448,97 @@ li{
 .one_person{
   width:250px;
   height:250px;
+  background: #FFF;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .search_conditions span{
   cursor:pointer;
 }
+.search_conditions{
+  position: relative;
+  display: block;
+}
 .search_conditions_inner{
   display:none;
-  background:#FFF;
+}
+.search_conditions_inner input{
+  margin-right: 5px;
 }
 .subject_edit_btn{
-  font-size:12px;
-  color:#0000FF;
+  color:#03AAD2;
   cursor:pointer;
+  position: relative;
 }
+
+.subject_edit_btn:after {
+  border-right: solid 2px #03AAD2;
+  border-top: solid 2px #03AAD2;
+  right: -20%;
+  top: 20%;
+}
+
 .subject_inner{
   display:none;
+}
+
+/* 右エリア */
+
+.search_area {
+  padding: 60px 40px;
+}
+
+.search_area input{
+  border: none;
+}
+
+.search_area div{
+  margin-bottom: 16px;
+}
+
+.search_area p{
+  color: #46688F;
+  font-size: 1.2rem;
+}
+
+.search_form{
+  border: none;
+  background-color: #D7DDE4;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.free_word{
+  display: block;
+  width: 100%;
+}
+
+.search_select select{
+  display: flex;
+  flex-direction: column;
+  width: 44%;
+}
+
+.search_area label{
+  color: #46688F;
+}
+
+.reset{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.reset input{
+  color: #03AAD2;
+}
+
+/* カレンダー */
+.table{
+  margin-bottom: 0;
+}
+
+.text-right{
+  margin: 30px auto 0;
 }
