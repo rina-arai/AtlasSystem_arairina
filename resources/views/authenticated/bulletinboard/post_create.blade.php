@@ -8,13 +8,12 @@
       <p class="mb-0">カテゴリー</p>
       <select class="w-100 border_color" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
+          <!-- メインカテゴリー表示（選択不可） -->
           <optgroup label="{{ $main_category->main_category }}"></optgroup>
           <!-- サブカテゴリー表示 -->
-          <optgroup>
-            @foreach($main_category->subCategories as $sub_category)
-              <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category }}</option>
-            @endforeach
-          </optgroup>
+          @foreach($main_category->subCategories as $sub_category)
+            <option value="{{ $sub_category->id }}">{{ $sub_category->sub_category }}</option>
+          @endforeach
         @endforeach
       </select>
     </div>

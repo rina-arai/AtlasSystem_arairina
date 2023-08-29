@@ -17,7 +17,7 @@
 
 <body class="all_content">
   <form action="{{ route('registerPost') }}" method="POST" class="login_form">
-    <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
+    <div class="w-100 d-flex mt-5 mb-5" style="align-items:center; justify-content:center;">
       <!-- 新規登録フォーム -->
       <div class="vh-75 border shadow p-5" style="width:40%">
 
